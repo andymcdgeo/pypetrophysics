@@ -1,8 +1,10 @@
 import unittest
-from pypetrophysics import porosity
+# from pypetrophysics.porosity import Porosity
+from pypetrophysics.porosity import Porosity
+
 
 class TestPorosity(unittest.TestCase):
-    poro = porosity.Porosity()
+    poro = Porosity()
 
     def test_porosity_density(self):
         self.assertAlmostEqual(self.poro.porosity_density(2.65, 1, 2.45), 0.1379, delta=0.01)
@@ -13,6 +15,9 @@ class TestPorosity(unittest.TestCase):
 
     def test_porosity_sonic(self):
         self.assertAlmostEqual(self.poro.porosity_sonic(55, 189, 75),0.1481, delta=0.01)
+
+    def test_random(self):
+        self.assertTrue(True)
     
 if __name__ == '__main__':
     unittest.main()
