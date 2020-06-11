@@ -1,6 +1,6 @@
 from pypetrophysics.miscfuncs import limit_vals
     
-def clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_result=False, low_limit=0, high_limit=1):
+def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_result=False, low_limit=0, high_limit=1):
     """
     Calculates a clay or shale volume from gamma ray log data.
     

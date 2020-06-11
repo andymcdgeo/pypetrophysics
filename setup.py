@@ -6,7 +6,7 @@ setup(
     author='Andy McDonald',
     email='andymcdonaldpetro@gmail.com',
     packages=['PyPetrophysics'],
-    version='0.1',
+    version='0.1.0',
     description='A library of petrophysical calculations',
     long_description=open('README.md').read()
 
