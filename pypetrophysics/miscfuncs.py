@@ -1,5 +1,3 @@
-
-    
 def limit_vals(input_value, low_limit, high_limit):
     """
     Apply limits to an input value.
@@ -24,3 +22,27 @@ def limit_vals(input_value, low_limit, high_limit):
         return high_limit
     else:
         return input_value
+
+def dec_perc_convert(input_value, input_units):
+    """
+    Convert from decimal to percent or percent to decimal.
+
+    Parameters
+    ----------
+    input_value : float
+        Value to be converted.
+    input_units : string
+        Units of the input value.
+        Enter either "percent" or "decimal"
+
+    Returns
+    -------
+    float
+        Returns converted value in percent or decimal.
+    """
+    if input_units == "percent":
+        return input_value / 100
+    elif input_units == "decimal":
+        return input_value * 100
+    else:
+        print("Enter the correct value for input units: percent or decimal")
