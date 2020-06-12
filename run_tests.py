@@ -7,5 +7,9 @@ start_dir = 'tests/'
 
 suite = loader.discover(start_dir)
 
-runner = unittest.TextTestRunner()
-runner.run(suite)
+result = unittest.TextTestRunner().run(suite)
+
+if result.wasSuccessful():
+    exit(0)
+else:
+    exit(1)
