@@ -45,4 +45,4 @@ def dec_perc_convert(input_value, input_units):
     elif input_units == "decimal":
         return input_value * 100
     else:
-        print("Enter the correct value for input units: percent or decimal")
+        raise Exception("Enter a valid unit value: decimal or percent")

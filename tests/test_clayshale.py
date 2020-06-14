@@ -1,18 +1,17 @@
-import unittest
-import pypetrophysics.clayshale as cs
+import pytest
+from pypetrophysics import clayshale
 
-#TODO Include tests for all methods
+# Testing basic clay vol
+# min, max, input, expected
+clayshalevol_params = [
+    (10, 150, 20, "linear", 0.0714),
+    (10, 150, 20, "larionov-young", 0.01673),
+    (10, 150, 20, "larionov-old", 0.03434),
+    (10, 150, 20, "steiber", 0.02499),
+    (10, 150, 20, "clavier", 0.03119),
+]
 
-class TestClayShale(unittest.TestCase):
-    def test_gr_index(self):
-        self.assertAlmostEqual(cs.gr_clay_shale_vol(10, 100, 50), 0.44, delta=0.01)
-        self.assertEqual(cs.gr_clay_shale_vol(10, 45, 50, limit_result=True, low_limit=0, high_limit= 1), 1)
-        self.assertEqual(cs.gr_clay_shale_vol(55, 100, 50, limit_result=True, low_limit=0, high_limit= 1), 0)
-
-        self.assertAlmostEqual(cs.gr_clay_shale_vol(minvalue=45, maxvalue=135, inputvalue=75, method="larionov-young", limit_result=False, low_limit=0, high_limit= 1), 0.11259, delta=0.01)
-        self.assertAlmostEqual(cs.gr_clay_shale_vol(minvalue=45, maxvalue=135, inputvalue=75), 0.3333, delta=0.01)
-        
-
-
-if __name__ == '__main__':
-    unittest.main()
+@pytest.mark.parametrize('minval, maxval, inputval, method, expected', clayshalevol_params)
+def test_gr_clay_shale_vol(minval, maxval, inputval, method, expected):
+    result = clayshale.gr_clay_shale_vol(minval, maxval, inputval, method)
+    assert result == pytest.approx(expected, 0.01)
