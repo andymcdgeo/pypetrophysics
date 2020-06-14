@@ -64,7 +64,7 @@ class Porosity:
         else:
             return porosity
             
-    def porosity_sonic(self, dtmatrix, dtfluid, dtlog, method=1, limit_result=False, low_limit=0, high_limit=0.6):
+    def porosity_sonic(self, dtmatrix, dtfluid, dtlog, method="wylie", limit_result=False, low_limit=0, high_limit=0.6):
         """
         Caculate porosity from a sonic log using either the Wylie-Time Average equation
         or Raymer-Hunt-Gardener equation.
@@ -82,10 +82,10 @@ class Porosity:
             Fluid slowness.
         dtlog : [type]
             Slowness (DT) from log measurements.
-        method : int, optional
+        method : string
             Select a method for calculating sonic porosity:
-            1 - Wylie Time Average (default)
-            2 - Raymer Hunt Gardener
+            "wylie" - Wylie Time Average (default)
+            "raymer" - Raymer Hunt Gardener
         limit_result : bool, optional
             Apply limits to the result value.
             By default False
@@ -111,13 +111,13 @@ class Porosity:
         Wyllie, M.R.J., Gregory, A.R., and Gardner, L.W. 1956. Elastic Wave Velocities in Heterogeneous and Porous Media. Geophysics 21 (1): 41–70.
         Raymer, L.L., Hunt, E.R., and Gardner, J.S. 1980. An Improved Sonic Transit Time-to-Porosity Transform, paper P. Trans., 1980 Annual Logging Symposium, SPWLA, 1–12.
         """
-        if method == 1: #Wylie Time Average
+        if method == "wylie": #Wylie Time Average
             porosity = (dtlog - dtmatrix) / (dtfluid - dtmatrix)
-        elif method == 2: #Raymer Hunt Gardener 
+        elif method == "raymer": #Raymer Hunt Gardener 
             alpha = (dtmatrix / (2 * dtfluid)) - 1
             porosity = -alpha-((alpha**2 + (dtmatrix / dtlog)-1)**0.5)
         else:
-            raise Exception("Enter a valid method value: 1- Wylie, 2- Raymer-Hunt")
+            raise Exception("Enter a valid method value: wylie or raymer")
 
         if limit_result is True:
             return self.limit_vals(porosity, low_limit, high_limit)

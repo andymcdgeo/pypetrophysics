@@ -1,4 +1,4 @@
-from pypetrophysics.miscfuncs import limit_vals
+from . import miscfuncs
     
 def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_result=False, low_limit=0, high_limit=1):
     """
@@ -67,9 +67,9 @@ def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_res
     elif method == "clavier":
         result = 1.7 - ((3.38-(igr + 0.7)**2)**0.5)
     else:
-        print("Enter a valid method string.")
+        raise Exception("Enter a valid method value: linear, larionov-young, larionov-old, steiber, clavier")
 
     if limit_result is True:
-        return limit_vals(result, low_limit, high_limit)
+        return miscfuncs.limit_vals(result, low_limit, high_limit)
     else:
         return result
