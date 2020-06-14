@@ -10,7 +10,7 @@ class TestClayShale(unittest.TestCase):
         self.assertEqual(cs.gr_clay_shale_vol(55, 100, 50, limit_result=True, low_limit=0, high_limit= 1), 0)
 
         self.assertAlmostEqual(cs.gr_clay_shale_vol(minvalue=45, maxvalue=135, inputvalue=75, method="larionov-young", limit_result=False, low_limit=0, high_limit= 1), 0.11259, delta=0.01)
-        self.assertAlmostEqual(cs.gr_clay_shale_vol(minvalue=45, maxvalue=135, inputvalue=75), 0.11259, delta=0.01)
+        self.assertAlmostEqual(cs.gr_clay_shale_vol(minvalue=45, maxvalue=135, inputvalue=75), 0.3333, delta=0.01)
         
 
 

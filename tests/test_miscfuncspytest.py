@@ -13,8 +13,8 @@ from pypetrophysics.miscfuncs import dec_perc_convert
 
 the_iterable = [
     (55, "percent", 0.55), 
-    (55, "decimal", 0.55),
-    (44, "decimal", 0.54),
+    (0.42, "decimal", 42),
+    (0.21, "decimal", 21),
     ]
 
     
