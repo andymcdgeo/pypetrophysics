@@ -46,3 +46,4 @@ def dec_perc_convert(input_value, input_units):
         return input_value * 100
     else:
         raise Exception("Enter a valid unit value: decimal or percent")
+
