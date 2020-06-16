@@ -73,3 +73,41 @@ def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_res
         return miscfuncs.limit_vals(result, low_limit, high_limit)
     else:
         return result
+
+def sp_clay_shale_vol(minvalue, maxvalue, inputvalue, limit_result=False, low_limit=0, high_limit=1):
+    """
+    Calculates a clay or shale volume from SP log.
+    
+    Maxvalue can be set to represent 100% shale value when working with VShale, or it can
+    be set to 100% clay when working with VClay.
+
+    Parameters
+    ----------
+     minvalue : float
+        Value representing a 100% clean interval.
+    maxvalue : float
+        Value representing either 100% clay or 100% shale.
+    inputvalue : float
+        Gamma ray value from log measurements.
+    limit_result : bool, optional
+        Apply limits to the result value.
+        By default False
+    low_limit : int, optional
+        Low limit. If value falls below this limit it will be set to this value. 
+        By default 0
+    high_limit : float, optional
+        High limit. If value falls above this limit it will be set to this value.
+        By default: 1
+
+    Returns
+    -------
+    float
+        Returns a VShale or VClay in decimal units.
+    """
+    
+    result = (inputvalue - minvalue)/(maxvalue - minvalue)
+
+    if limit_result is True:
+        return miscfuncs.limit_vals(result, low_limit, high_limit)
+    else:
+        return result
