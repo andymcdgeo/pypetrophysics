@@ -1,31 +1,26 @@
 import unittest
-#import pytest
-# from pypetrophysics.porosity import Porosity
-from pypetrophysics.porosity import Porosity
+import pytest
+
+from pypetrophysics import porosity
 
 
-class TestPorosity(unittest.TestCase):
-    poro = Porosity()
+porosity_den_params = [
+    (2.65, 1, 2.45, 0.1379),
+    (2.71, 0.99, 2.68, 0.017),
+]
 
-    def test_porosity_density(self):
-        self.assertAlmostEqual(self.poro.porosity_density(2.65, 1, 2.45), 0.1379, delta=0.01)
-        self.assertAlmostEqual(self.poro.porosity_density(2.71, 1, 2.45), 0.1793, delta=0.01)
-        
-        self.assertEqual(self.poro.porosity_density(2.65, 1, 2.64, limit_result=True, low_limit=0.1, high_limit=1), 0.1)
-        self.assertEqual(self.poro.porosity_density(2.65, 1, 2.24, limit_result=True, low_limit=0, high_limit=0.12), 0.12)
+@pytest.mark.parametrize('rhomatrix, rhofluid, rhobulk, expected', porosity_den_params)
+def test_porosity_density(rhomatrix, rhofluid, rhobulk, expected):
+    result = porosity.porosity_density(rhomatrix, rhofluid, rhobulk)
+    assert result == pytest.approx(expected, abs=0.001)
 
-    # def test_porosity_sonic(self):
-    #     logDT = [100, 55, 66, 60]
-    #     matrix = [55, 42, 47, 55]
-    #     fluid = [189, 189, 200, 190]
-    #     expected = [189, 189, 200, 190]
 
-    #     for x, y ,z, exp in zip(logDT, matrix, fluid, expected):
-    #         self.assertAlmostEqual(self.poro.porosity_sonic(y, z, x), exp, delta=0.01)
-    #     # self.assertAlmostEqual(self.poro.porosity_sonic(55, 189, 75),0.1481, delta=0.01)
+porosity_den_params_limits = [
+    (2.65, 1, 2.45, 0.15, 0.6, 0.15),
+    (2.71, 0.99, 2.08, 0, 0.1, 0.1),
+]
 
-    def test_random(self):
-        self.assertTrue(True)
-    
-if __name__ == '__main__':
-    unittest.main()
+@pytest.mark.parametrize('rhomatrix, rhofluid, rhobulk, lowlimit, highlimit, expected', porosity_den_params_limits)
+def test_porosity_density_limits(rhomatrix, rhofluid, rhobulk, lowlimit, highlimit, expected):
+    assert porosity.porosity_density(rhomatrix, rhofluid, rhobulk, limit_result=True, low_limit=lowlimit, high_limit=highlimit) == expected
+    # assert result == expected
