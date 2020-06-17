@@ -14,6 +14,9 @@ Welcome to pypetrophysics's documentation!
    convert
    miscfuncs
    porosity
+   salinity
+   saturation
+   temperature
 
 
 Indices and tables
