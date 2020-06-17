@@ -28,7 +28,8 @@ def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_res
             larionov-old
             steiber
             clavier
-        By default: linear
+        
+            By default: linear
     limit_result : bool, optional
         Apply limits to the result value.
         By default False

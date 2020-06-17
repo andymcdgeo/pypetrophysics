@@ -7,3 +7,6 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+
+# Sphinx documentation
+docs/_build/
