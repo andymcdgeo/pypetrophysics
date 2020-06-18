@@ -1,22 +1,18 @@
-.. pypetrophysics documentation master file, created by
-   sphinx-quickstart on Wed Jun 17 19:26:34 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+**************
+pypetrophysics
+**************
 
-Welcome to pypetrophysics's documentation!
-==========================================
+pypetrophysics is a Python library for carrying out petrophysical analysis.
+
+**Created By: Andy McDonald**
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   clayshale
-   convert
-   miscfuncs
-   porosity
-   salinity
-   saturation
-   temperature
+   Installation <install>
+   Modules <modules>
+
 
 
 Indices and tables
