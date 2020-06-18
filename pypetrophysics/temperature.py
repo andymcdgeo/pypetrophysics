@@ -43,3 +43,5 @@ def formation_temperature(surface_temperature, gradient, depth):
     """
     form_temp = surface_temperature + gradient * depth
     return form_temp
+
+print(formation_temperature(60, 0.01125, 8000))
