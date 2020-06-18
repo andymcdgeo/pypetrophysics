@@ -4,6 +4,62 @@ Saturation Calculations
 
 from pypetrophysics import miscfuncs
 
+def formation_factor(arch_a, phi, arch_m):
+    """
+    Computes Archie Formation Factor (F)
+
+    Parameters
+    ----------
+    arch_a : float
+        Archie Tortuosity Factor - a
+    phi : [type]
+        Porosity (decimal)
+    arch_m : float
+        Archie Cementation Exponent - m
+
+    Returns
+    -------
+    float
+        Returns Archie Formation Factor
+    """
+    return arch_a / phi ** arch_m
+
+def ro(formation_factor, rw):
+    """
+    Archie Ro - Resistivity of water saturation formation (ohm.m)
+
+    Parameters
+    ----------
+    formation_factor : float
+        Archie Formation Factor
+    rw : float
+        Resistivity of formation water (ohm.m)
+
+    Returns
+    -------
+    float
+        Returns resistivity of water saturation formation (ohm.m)
+    """
+    return formation_factor * rw
+
+def resistivity_index(rt, ro):
+    """
+    Archie Resistivity Index (I)
+
+    Parameters
+    ----------
+    rt : float
+        True formation resistivity (ohm.m)
+    ro : float
+        Resistivity of water saturated formation (ohm.m)
+
+    Returns
+    -------
+    float
+        Returns Archie resistivity index (I)
+    """
+    return rt/ro
+
 def sw_archie(phi, rw, rt, arch_a, arch_m, arch_n, limit_result=False, low_limit=0, high_limit=1):
     """
     Archie Water Saturation
