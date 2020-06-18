@@ -8,6 +8,11 @@ This is a python package containing a number of common petrophysical calculation
 To install, use the following command:  
   
   `pip install pypetrophysics`
-  
+
+# Documentation
+Documentation is available at:
+https://pypetrophysics.readthedocs.io/en/latest/index.html
+
 # Reporting Issues
 I would love to hear from you if you have come across any bugs, errors or suggestions. To create a new issue, click on the issues tab at the top of the repo and create a new case.
+
