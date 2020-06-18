@@ -98,5 +98,3 @@ def sw_archie(phi, rw, rt, arch_a, arch_m, arch_n, limit_result=False, low_limit
         return miscfuncs.limit_vals(sw, low_limit, high_limit)
     else:
         return sw
-
-    return sw
