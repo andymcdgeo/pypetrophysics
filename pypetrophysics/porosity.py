@@ -102,3 +102,43 @@ def porosity_sonic(dtmatrix, dtfluid, dtlog, method="wyllie", limit_result=False
         return miscfuncs.limit_vals(porosity, low_limit, high_limit)
     else:
         return porosity
+
+def porosity_effective(phit, vclay, phitclay):
+    """
+    Converts total porosity to effective porosity
+
+    Parameters
+    ----------
+    phit : float
+        Total porosity (decima)
+    vclay : float
+        Volume of clay (decimal)
+    phitclay : float
+        Clay porosity - taken from a shale interval (decimal)
+
+    Returns
+    -------
+    float
+        Returns effective porosity (decimal)
+    """
+    return phit - vclay * phitclay
+
+def porosity_shale(dens_dry_shale, dens_wet_shale, dens_water):
+    """
+    Calculates shale porosity.
+
+    Parameters
+    ----------
+    dens_dry_shale : float
+        Dry shale density (g/cc)
+    dens_wet_shale : float
+        Wet shale density (g/cc)
+    dens_water : float
+        Water density (g/cc)
+
+    Returns
+    -------
+    float
+        Returns shale porosity (decimal).
+    """
+    return (dens_dry_shale - dens_wet_shale) / dens_water
