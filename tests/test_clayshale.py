@@ -32,3 +32,12 @@ clayshalevol_limits_params = [
 def test_gr_clay_shale_vol_limits(minval, maxval, inputval, lowval, highval, expected):
     result = clayshale.gr_clay_shale_vol(minvalue=minval, maxvalue=maxval, inputvalue=inputval, limit_result=True, low_limit=lowval, high_limit=highval)
     assert result == pytest.approx(expected, 0.01)
+
+def test_vshale_to_vclay():
+    assert clayshale.vshale_to_vclay(0.6, 0.5) == 0.3
+
+def test_sp_clay_shale_vol():
+    assert clayshale.sp_clay_shale_vol(-122, -75, -95) == pytest.approx(0.5744, abs=0.001)
+
+def test_den_neu_shale_vol():
+    assert clayshale.den_neu_shale_vol(0.28, 0.12, 0.3, 0.03) == pytest.approx(0.592, abs=0.001)
