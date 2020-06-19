@@ -112,3 +112,62 @@ def sp_clay_shale_vol(minvalue, maxvalue, inputvalue, limit_result=False, low_li
         return miscfuncs.limit_vals(result, low_limit, high_limit)
     else:
         return result
+
+def den_neu_shale_vol(neut_porosity, dens_porosity, neut_shale_porosity, dens_shale_porosity, limit_result=False, low_limit=0, high_limit=1):
+    """
+    Calculates a shale volume from density and neutron porosity logs.
+
+    Parameters
+    ----------
+    neut_porosity : float
+        Neutron porosity
+    dens_porosity : float
+        Density porosity
+    neut_shale_porosity : [type]
+        [description]
+    dens_shale_porosity : [type]
+        [description]
+   limit_result : bool, optional
+        Apply limits to the result value.
+        By default False
+    low_limit : int, optional
+        Low limit. If value falls below this limit it will be set to this value. 
+        By default 0
+    high_limit : float, optional
+        High limit. If value falls above this limit it will be set to this value.
+        By default: 1
+
+    Returns
+    -------
+    float
+        Returns a shale volume in decimal units.
+
+    References
+    ----------
+    Bhuyan, K. and Passey, Q. R. (1994) ‘Clay estimation from GR and neutron-density porosity logs’, SPWLA 35th Annual Logging Symposium, pp. 1–15.
+    Dewan, J. T., 1983, Essentials of modern open- hole log interpretation: PennWell Books, Tulsa, Oklahoma.
+    """
+    result = (neut_porosity - dens_porosity)/(neut_shale_porosity - dens_shale_porosity)
+
+    if limit_result is True:
+        return miscfuncs.limit_vals(result, low_limit, high_limit)
+    else:
+        return result
+
+def vshale_to_vclay(vshale, multiplier):
+    """
+    Converts a shale volume to clay volume using a multiplier.
+
+    Parameters
+    ----------
+    vshale : float
+        Shale volume
+    multiplier : float
+        Shale to clay multiplier (decimal)
+
+    Returns
+    -------
+    float
+        Returns a clay volume.
+    """
+    return vshale * multiplier
