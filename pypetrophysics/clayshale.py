@@ -23,11 +23,11 @@ def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_res
         Gamma ray value from log measurements.
     method : string
         Select method for calculating VClay or VShale:
-            linear
-            larionov-young
-            larionov-old
-            steiber
-            clavier
+        - linear
+        - larionov-young
+        - larionov-old
+        - steiber
+        - clavier
         
             By default: linear
     limit_result : bool, optional
@@ -47,6 +47,7 @@ def gr_clay_shale_vol(minvalue, maxvalue, inputvalue, method="linear", limit_res
     
     References
     -------
+    Bhuyan, K. and Passey, Q. R. (1994) ‘Clay estimation from GR and neutron-density porosity logs’, SPWLA 35th Annual Logging Symposium, pp. 1–15.
     Larionov VV (1969) Borehole radiometry: Moscow, U.S.S.R., Nedra
     Steiber RG (1973) Optimization of shale volumes in open hole logs. J Petrol Technol 1973(31):147–162
 
@@ -104,6 +105,10 @@ def sp_clay_shale_vol(minvalue, maxvalue, inputvalue, limit_result=False, low_li
     -------
     float
         Returns a VShale or VClay in decimal units.
+    
+    References
+    ----------
+    Dewan, J. T., 1983, Essentials of modern open- hole log interpretation: PennWell Books, Tulsa, Oklahoma.
     """
     
     result = (inputvalue - minvalue)/(maxvalue - minvalue)
@@ -169,5 +174,9 @@ def vshale_to_vclay(vshale, multiplier):
     -------
     float
         Returns a clay volume.
+
+     References
+    ----------
+    Bhuyan, K. and Passey, Q. R. (1994) ‘Clay estimation from GR and neutron-density porosity logs’, SPWLA 35th Annual Logging Symposium, pp. 1–15.
     """
     return vshale * multiplier
