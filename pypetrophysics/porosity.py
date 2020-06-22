@@ -123,6 +123,26 @@ def porosity_effective(phit, vclay, phitclay):
     """
     return phit - vclay * phitclay
 
+def porosity_total(phie, vclay, phiclay):
+    """
+    Converts effective porosity to total porosity
+
+    Parameters
+    ----------
+    phie : float
+        Effective porosity (decimal)
+    vclay : float
+        Volume of clay (decimal)
+    phiclay : float
+        Clay porosity - taken from a shale interval (decimal)
+
+    Returns
+    -------
+    float
+        Returns total porosity (decimal)
+    """
+    return phie + vclay * phiclay
+
 def porosity_shale(dens_dry_shale, dens_wet_shale, dens_water):
     """
     Calculates shale porosity.
