@@ -1,3 +1,0 @@
-"""
-Lithology related calculations
-"""
